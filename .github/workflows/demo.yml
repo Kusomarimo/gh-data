@@ -30,14 +30,22 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: dis-files
-          path: |
-            dist
-            package.json
+          path: dist
+          #path: |
+          #  dist
+          #  package.json
 
 
   deploy:
-    needs: build
+    needs: build # Run after build, artifacts needs to be created before download!
     runs-on: ubuntu-latest
     steps:
+      - name: Get build artifacts
+        # https://github.com/actions/download-artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: dist-files
+      - name: Output contents
+        run: ls    
       - name: Deploy
         run: echo "Deploying..."
