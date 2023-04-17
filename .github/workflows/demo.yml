@@ -35,7 +35,7 @@ jobs:
         # Find the javascript file in the assets folder, the dist folder, 
         # then executes that command to output that filename.
         # $GITHUB_OUTPUT is an environmental variable
-        run: find dist/assets/*.js -type f -execdir echo 'script-file={} >> $GITHUB_OUTPUT ';'
+        run: find dist/assets/*.js -type f -execdir echo 'script-file={}' >> $GITHUB_OUTPUT ';'
       - name: Upload artifacts 
         # https://github.com/actions/upload-artifact
         uses: actions/upload-artifact@v3
